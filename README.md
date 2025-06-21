@@ -133,7 +133,7 @@ Warning: The sequence does not end with a stop codon!
 
 #### Use Different Indexing
 ```bash
-python main.py --dna "ATGCGT" --start "11" --mutation_change "13 G 14 A"
+python main.py --dna "atg cgt" --start "11" --mutation_change "13 G 14 A"
 ```
 ```
 Original DNA Sequence:  ATGCGT
