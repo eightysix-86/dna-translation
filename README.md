@@ -15,15 +15,12 @@ This program processes DNA sequences, applies mutations, and translates them int
 
 ## Requirements
 - Python 3.8 or higher
-- Required Python libraries (if any)
 
 ## Installation
 1. Clone the repository:
    ```bash
    git clone https://github.com/eightysix-86/dna-translation.git
    cd <repository-directory>
-
-2. Ensure Python is installed on your system.
 
 ## Usage
 ### Terminal Commands
@@ -133,7 +130,7 @@ Warning: The sequence does not end with a stop codon!
 
 #### Use Different Indexing
 ```bash
-python main.py --dna "ATGCGT" --start "11" --mutation_change "13 G 14 A"
+python main.py --dna "atg cgt" --start "11" --mutation_change "13 G 14 A"
 ```
 ```
 Original DNA Sequence:  ATGCGT
