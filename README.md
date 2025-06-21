@@ -41,6 +41,10 @@ python main.py --dna <sequence> [options]
 - `--mutation_add`: Apply mutations to add nucleotides. Format: `<position nucleotide>`. Example with `1 A 4 T`:
 "ATGCGT" -> "**A**ATG**T**CGT"
 
+#### ⚠️ WARNINGS: 
+- Nucleotide positions are **1-indexed by default**. Use `--start` to change the indexing. 
+- `--mutation_add` add nucleotides **at the specified position**, shifting subsequent nucleotides to the right.
+
 ### Examples
 #### Basic Translation
 ```bash
