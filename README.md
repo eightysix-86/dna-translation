@@ -58,7 +58,7 @@ No mutations were applied to the original sequence.
 
 #### Apply Change Mutation
 ```bash
-python main.py --dna "ATGCGT" --mutation_change "13 G 14 A"
+python main.py --dna "ATGCGT" --mutation_change "3 G 4 A"
 ```
 ```
 Original DNA Sequence:  ATGCGT
