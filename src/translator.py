@@ -27,6 +27,8 @@ def translate_dna_to_protein(sequence: str) -> list[str]:
     codon_length = 3
     protein_sequence = []
     start_index = __find_start_codon(sequence)
+    if start_index == -1:
+        return protein_sequence
 
     if not is_sequence_valid(sequence):
         raise ValueError("Invalid DNA sequence. Only A, T, C, G are allowed.")

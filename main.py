@@ -63,16 +63,24 @@ def main(args):
         # If the strand is template, we need to get the complementary sequence
         sequence = get_complementary_sequence(sequence)
         mutated_sequence = get_complementary_sequence(mutated_sequence)
+        print(f"Coding strand: {sequence}\n")
 
     protein_sequence_init = translate_dna_to_protein(sequence)
     protein_sequence_mutated = translate_dna_to_protein(mutated_sequence)
 
+    # Print the results
+    if not protein_sequence_init:
+        print("No protein sequence could be translated from the original DNA sequence.")
+        return
     print("Original DNA Sequence: ", sequence)
     print("Initial Protein Sequence:", '-'.join(protein_sequence_init))
     print(f"Size: {len(protein_sequence_init) - (1 if protein_sequence_init[-1] == 'Stop' else 0)}\n")
     if protein_sequence_init[-1] != 'Stop':
-        print("Warning: The original sequence does not end with a stop codon!\n")
+        print("Warning: The sequence does not end with a stop codon!\n")
 
+    if not protein_sequence_mutated:
+        print("No protein sequence could be translated from the mutated DNA sequence.")
+        return
     if mutated_sequence == sequence:
         print("No mutations were applied to the original sequence.")
     else:
@@ -80,7 +88,7 @@ def main(args):
         print("Mutated Protein Sequence:", '-'.join(protein_sequence_mutated))
         print(f"Size: {len(protein_sequence_mutated) - (1 if protein_sequence_mutated[-1] == 'Stop' else 0)}\n")
         if protein_sequence_mutated[-1] != 'Stop':
-            print("Warning: The original sequence does not end with a stop codon!\n")
+            print("Warning: The sequence does not end with a stop codon!\n")
 
 if __name__ == '__main__':
     # Definition of the arguments that can be given through the command line (terminal).
