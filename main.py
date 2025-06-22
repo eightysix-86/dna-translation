@@ -1,6 +1,6 @@
 import argparse
 
-from src.translator import translate_dna_to_protein, mutation_change, mutation_delete, mutation_add
+from src.translator import translate_dna_to_protein, mutation_change, mutation_delete, mutation_add, find_start_codon
 from src.utils.utils import is_nucleotide_valid, format_sequence, is_sequence_valid, get_complementary_sequence
 
 
@@ -61,20 +61,33 @@ def main(args):
     # Translate the modified DNA sequence to protein
     if args.strand == "template":
         # If the strand is template, we need to get the complementary sequence
+        sequence_temp = sequence
         sequence = get_complementary_sequence(sequence)
         mutated_sequence = get_complementary_sequence(mutated_sequence)
-        print(f"Coding strand: {sequence}\n")
+    else:
+        sequence_temp = get_complementary_sequence(sequence)
 
     protein_sequence_init = translate_dna_to_protein(sequence)
     protein_sequence_mutated = translate_dna_to_protein(mutated_sequence)
 
+    translation_start = find_start_codon(sequence)
+    protein_size = len(protein_sequence_init) - (1 if protein_sequence_init and protein_sequence_init[-1] == 'Stop' else 0)
+    translation_start_mutated = find_start_codon(mutated_sequence)
+    protein_size_mutated = len(protein_sequence_mutated) - (1 if protein_sequence_mutated and protein_sequence_mutated[-1] == 'Stop' else 0)
+
     # Print the results
+    print("\n" + 25 *"=" + f" Results for sequence of {len(sequence)} bp " + "=" * 25)
     if not protein_sequence_init:
         print("No protein sequence could be translated from the original DNA sequence.")
         return
-    print("Original DNA Sequence: ", sequence)
-    print("Initial Protein Sequence:", '-'.join(protein_sequence_init))
-    print(f"Size: {len(protein_sequence_init) - (1 if protein_sequence_init[-1] == 'Stop' else 0)}\n")
+    print("\nOriginal DNA Sequence (coding strand): ", ' '.join(sequence[i:i+10] for i in range(0, len(sequence), 10)))
+    print("\nOriginal DNA Sequence (template strand): ", ' '.join(sequence_temp[i:i+10] for i in range(0, len(sequence_temp), 10)))
+    print("\nInitial Protein Sequence:", '-'.join(protein_sequence_init))
+    print(f"Size: {protein_size}")
+    if translation_start == -1:
+        print("No start codon found in the original sequence.")
+    else:
+        print(f"Translation starts at position {translation_start + start_idx} for a gene of {protein_size * 3} bp\n")
     if protein_sequence_init[-1] != 'Stop':
         print("Warning: The sequence does not end with a stop codon!\n")
 
@@ -84,9 +97,13 @@ def main(args):
     if mutated_sequence == sequence:
         print("No mutations were applied to the original sequence.")
     else:
-        print("Mutated DNA Sequence: ", mutated_sequence)
-        print("Mutated Protein Sequence:", '-'.join(protein_sequence_mutated))
-        print(f"Size: {len(protein_sequence_mutated) - (1 if protein_sequence_mutated[-1] == 'Stop' else 0)}\n")
+        print("\nMutated DNA Sequence: ", ' '.join(mutated_sequence[i:i+10] for i in range(0, len(mutated_sequence), 10)))
+        print("\nMutated Protein Sequence:", '-'.join(protein_sequence_mutated))
+        print(f"Size: {protein_size_mutated}")
+        if translation_start_mutated == -1:
+            print("No start codon found in the mutated sequence.")
+        else:
+            print(f"Translation starts at position {translation_start_mutated + start_idx} for a gene of {protein_size_mutated * 3} bp\n")
         if protein_sequence_mutated[-1] != 'Stop':
             print("Warning: The sequence does not end with a stop codon!\n")
 

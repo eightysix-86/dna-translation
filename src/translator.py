@@ -1,7 +1,7 @@
 from src.utils.codon_table import CodonTable
 from src.utils.utils import is_sequence_valid, is_nucleotide_valid
 
-def __find_start_codon(sequence: str) -> int:
+def find_start_codon(sequence: str) -> int:
     """
     Finds the index of the first start codon (ATG) in the DNA sequence.
 
@@ -26,7 +26,7 @@ def translate_dna_to_protein(sequence: str) -> list[str]:
     """
     codon_length = 3
     protein_sequence = []
-    start_index = __find_start_codon(sequence)
+    start_index = find_start_codon(sequence)
     if start_index == -1:
         return protein_sequence
 
