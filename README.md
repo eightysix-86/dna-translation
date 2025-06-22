@@ -50,12 +50,24 @@ python main.py --dna <sequence> [options]
 ```bash
 python main.py --dna "ATGCGT"
 ```
+```bash
+python main.py --dna "atg cgt"
 ```
-Original DNA Sequence:  ATGCGT
+```bash
+python main.py --dna " AT G cGt  "
+```
+```
+========================= Results for sequence of 6 bp =========================
+
+Original DNA Sequence (coding strand):  ATGCGT
+
+Original DNA Sequence (template strand):  TACGCA
+
 Initial Protein Sequence: Met-Arg
 Size: 2
+Translation starts at position 1 for a gene of 6 bp
 
-Warning: The original sequence does not end with a stop codon!
+Warning: The sequence does not end with a stop codon!
 
 No mutations were applied to the original sequence.
 ```
@@ -65,15 +77,24 @@ No mutations were applied to the original sequence.
 python main.py --dna "ATGCGT" --mutation_change "3 G 4 A"
 ```
 ```
-Original DNA Sequence:  ATGCGT
+========================= Results for sequence of 6 bp =========================
+
+Original DNA Sequence (coding strand):  ATGCGT
+
+Original DNA Sequence (template strand):  TACGCA
+
 Initial Protein Sequence: Met-Arg
 Size: 2
+Translation starts at position 1 for a gene of 6 bp
 
 Warning: The sequence does not end with a stop codon!
 
+
 Mutated DNA Sequence:  ATGAGT
+
 Mutated Protein Sequence: Met-Ser
 Size: 2
+Translation starts at position 1 for a gene of 6 bp
 
 Warning: The sequence does not end with a stop codon!
 ```
@@ -83,17 +104,26 @@ Warning: The sequence does not end with a stop codon!
 python main.py --dna "ATGCGT" --mutation_del "5"
 ```
 ```
-Original DNA Sequence:  ATGCGT
+========================= Results for sequence of 6 bp =========================
+
+Original DNA Sequence (coding strand):  ATGCGT
+
+Original DNA Sequence (template strand):  TACGCA
+
 Initial Protein Sequence: Met-Arg
 Size: 2
+Translation starts at position 1 for a gene of 6 bp
 
 Warning: The sequence does not end with a stop codon!
 
+
 Mutated DNA Sequence:  ATGCT
+
 Mutated Protein Sequence: Met
 Size: 1
+Translation starts at position 1 for a gene of 3 bp
 
-Warning: The sequence does not end with a stop codon!   
+Warning: The sequence does not end with a stop codon!  
 ```
 
 #### Apply Addition Mutation
@@ -101,15 +131,24 @@ Warning: The sequence does not end with a stop codon!
 python main.py --dna "ATGCGT" --mutation_add "4 A 5 G"
 ```
 ```
-Original DNA Sequence:  ATGCGT
+========================= Results for sequence of 6 bp =========================
+
+Original DNA Sequence (coding strand):  ATGCGT
+
+Original DNA Sequence (template strand):  TACGCA
+
 Initial Protein Sequence: Met-Arg
 Size: 2
+Translation starts at position 1 for a gene of 6 bp
 
 Warning: The sequence does not end with a stop codon!
 
+
 Mutated DNA Sequence:  ATGACGGT
+
 Mutated Protein Sequence: Met-Thr
 Size: 2
+Translation starts at position 1 for a gene of 6 bp
 
 Warning: The sequence does not end with a stop codon!
 ```
@@ -137,15 +176,24 @@ Warning: The sequence does not end with a stop codon!
 python main.py --dna "atg cgt" --start "11" --mutation_change "13 G 14 A"
 ```
 ```
-Original DNA Sequence:  ATGCGT
+========================= Results for sequence of 6 bp =========================
+
+Original DNA Sequence (coding strand):  ATGCGT
+
+Original DNA Sequence (template strand):  TACGCA
+
 Initial Protein Sequence: Met-Arg
 Size: 2
+Translation starts at position 1 for a gene of 6 bp
 
 Warning: The sequence does not end with a stop codon!
 
+
 Mutated DNA Sequence:  ATGAGT
+
 Mutated Protein Sequence: Met-Ser
 Size: 2
+Translation starts at position 1 for a gene of 6 bp
 
 Warning: The sequence does not end with a stop codon!
 ```
@@ -155,11 +203,15 @@ Warning: The sequence does not end with a stop codon!
 python main.py --dna "TACCGT" --strand "template"
 ```
 ```
-Coding strand: ATGGCA
+========================= Results for sequence of 6 bp =========================
 
-Original DNA Sequence:  ATGGCA
+Original DNA Sequence (coding strand):  ATGGCA
+
+Original DNA Sequence (template strand):  TACCGT
+
 Initial Protein Sequence: Met-Ala
 Size: 2
+Translation starts at position 1 for a gene of 6 bp
 
 Warning: The sequence does not end with a stop codon!
 
